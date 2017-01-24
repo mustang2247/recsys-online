@@ -1,31 +1,27 @@
 package com.ganqiang.recsys;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
-import org.apache.log4j.Logger;
-
-import kafka.javaapi.producer.Producer;
-import kafka.producer.KeyedMessage;
-import kafka.producer.ProducerConfig;
-import storm.kafka.BrokerHosts;
-import storm.kafka.KafkaSpout;
-import storm.kafka.SpoutConfig;
-import storm.kafka.ZkHosts;
-import backtype.storm.Config;
-import backtype.storm.LocalCluster;
-import backtype.storm.StormSubmitter;
-import backtype.storm.generated.AlreadyAliveException;
-import backtype.storm.generated.InvalidTopologyException;
-import backtype.storm.spout.SchemeAsMultiScheme;
-import backtype.storm.topology.TopologyBuilder;
-import backtype.storm.utils.Utils;
-
 import com.ganqiang.recsys.bolt.HBaseStoreBolt;
 import com.ganqiang.recsys.spout.MessageScheme;
 import com.ganqiang.recsys.util.Constants;
 import com.ganqiang.recsys.util.Initializer;
+import org.apache.log4j.Logger;
+import org.apache.storm.Config;
+import org.apache.storm.LocalCluster;
+import org.apache.storm.StormSubmitter;
+import org.apache.storm.generated.AlreadyAliveException;
+import org.apache.storm.generated.AuthorizationException;
+import org.apache.storm.generated.InvalidTopologyException;
+import org.apache.storm.kafka.BrokerHosts;
+import org.apache.storm.kafka.KafkaSpout;
+import org.apache.storm.kafka.SpoutConfig;
+import org.apache.storm.kafka.ZkHosts;
+import org.apache.storm.spout.SchemeAsMultiScheme;
+import org.apache.storm.topology.TopologyBuilder;
+import org.apache.storm.utils.Utils;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 public class Recsys {
 
@@ -36,8 +32,7 @@ public class Recsys {
 		Initializer.setup();
 	}
 
-	public static void main(String[] args) throws AlreadyAliveException,
-			InvalidTopologyException {
+	public static void main(String[] args) throws InvalidTopologyException, AuthorizationException, AlreadyAliveException {
 		logger.info("begin to running recsys.");
 		BrokerHosts brokerHosts = new ZkHosts(Constants.kafka_zk_address);
 		SpoutConfig spoutConfig = new SpoutConfig(brokerHosts, Constants.kafka_topic, 	Constants.kafka_zk_root, Constants.kafka_id);
@@ -77,11 +72,11 @@ public class Recsys {
 		props.put("request.required.acks", "1");
 
 		String msg = Constants.test_log;
-		ProducerConfig config = new ProducerConfig(props);
-		Producer<String, String> producer = new Producer<String, String>(config);
-		KeyedMessage<String, String> data = new KeyedMessage<String, String>("topic1",  msg);
-		producer.send(data);
-		producer.close();
+//		ProducerConfig config = new ProducerConfig(props);
+//		Producer<String, String> producer = new Producer<String, String>(config);
+//		KeyedMessage<String, String> data = new KeyedMessage<String, String>("topic1",  msg);
+//		producer.send(data);
+//		producer.close();
 	}
 
 }
