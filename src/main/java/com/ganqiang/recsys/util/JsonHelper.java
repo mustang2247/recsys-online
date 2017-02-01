@@ -1,8 +1,8 @@
 package com.ganqiang.recsys.util;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ganqiang.recsys.entity.UserActionLog;
+import org.apache.htrace.fasterxml.jackson.databind.JsonNode;
+import org.apache.htrace.fasterxml.jackson.databind.ObjectMapper;
 
 public final class JsonHelper {
 
