@@ -1,8 +1,8 @@
 package com.musgame.bis.Chapter03.trident.state;
 
+import org.apache.storm.trident.state.map.IBackingMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import storm.trident.state.map.IBackingMap;
 
 import java.util.ArrayList;
 import java.util.List;

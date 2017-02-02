@@ -1,9 +1,9 @@
 package com.musgame.bis.Chapter03.trident.operator;
 
 import com.esotericsoftware.minlog.Log;
-import storm.trident.operation.BaseFunction;
-import storm.trident.operation.TridentCollector;
-import storm.trident.tuple.TridentTuple;
+import org.apache.storm.trident.operation.BaseFunction;
+import org.apache.storm.trident.operation.TridentCollector;
+import org.apache.storm.trident.tuple.TridentTuple;
 
 public class DispatchAlert extends BaseFunction {
     private static final long serialVersionUID = 1L;

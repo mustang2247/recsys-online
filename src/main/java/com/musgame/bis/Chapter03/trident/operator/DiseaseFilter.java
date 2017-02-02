@@ -1,10 +1,10 @@
 package com.musgame.bis.Chapter03.trident.operator;
 
-import com.packtpub.storm.trident.model.DiagnosisEvent;
+import com.musgame.bis.Chapter03.trident.model.DiagnosisEvent;
+import org.apache.storm.trident.operation.BaseFilter;
+import org.apache.storm.trident.tuple.TridentTuple;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import storm.trident.operation.BaseFilter;
-import storm.trident.tuple.TridentTuple;
 
 public class DiseaseFilter extends BaseFilter {
     private static final long serialVersionUID = 1L;

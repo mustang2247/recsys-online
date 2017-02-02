@@ -1,8 +1,8 @@
 package com.musgame.bis.Chapter03.trident.spout;
 
-import backtype.storm.task.TopologyContext;
-import backtype.storm.tuple.Fields;
-import storm.trident.spout.ITridentSpout;
+import org.apache.storm.task.TopologyContext;
+import org.apache.storm.trident.spout.ITridentSpout;
+import org.apache.storm.tuple.Fields;
 
 import java.util.Map;
 

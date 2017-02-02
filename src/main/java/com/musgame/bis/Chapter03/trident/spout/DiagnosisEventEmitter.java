@@ -1,16 +1,16 @@
 package com.musgame.bis.Chapter03.trident.spout;
 
-import com.packtpub.storm.trident.model.DiagnosisEvent;
-import storm.trident.operation.TridentCollector;
-import storm.trident.spout.ITridentSpout.Emitter;
-import storm.trident.topology.TransactionAttempt;
+import com.musgame.bis.Chapter03.trident.model.DiagnosisEvent;
+import org.apache.storm.trident.operation.TridentCollector;
+import org.apache.storm.trident.spout.ITridentSpout;
+import org.apache.storm.trident.topology.TransactionAttempt;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class DiagnosisEventEmitter implements Emitter<Long>, Serializable {
+public class DiagnosisEventEmitter implements ITridentSpout.Emitter<Long>, Serializable {
     private static final long serialVersionUID = 1L;
     AtomicInteger successfulTransactions = new AtomicInteger(0);
 

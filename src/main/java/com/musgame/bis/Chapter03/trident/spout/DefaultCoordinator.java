@@ -1,12 +1,12 @@
 package com.musgame.bis.Chapter03.trident.spout;
 
+import org.apache.storm.trident.spout.ITridentSpout;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import storm.trident.spout.ITridentSpout.BatchCoordinator;
 
 import java.io.Serializable;
 
-public class DefaultCoordinator implements BatchCoordinator<Long>, Serializable {
+public class DefaultCoordinator implements ITridentSpout.BatchCoordinator<Long>, Serializable {
     private static final long serialVersionUID = 1L;
     private static final Logger LOG = LoggerFactory.getLogger(DefaultCoordinator.class);
 
