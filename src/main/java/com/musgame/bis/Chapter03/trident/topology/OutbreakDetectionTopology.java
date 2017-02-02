@@ -18,12 +18,29 @@ public class OutbreakDetectionTopology {
         DiagnosisEventSpout spout = new DiagnosisEventSpout();
         Stream inputStream = topology.newStream("event", spout);
 
+        // Filter for critical events 过滤关键事件
         inputStream.each(new Fields("event"), new DiseaseFilter())
+
+                // Locate the closest city 找到最近的城市
                 .each(new Fields("event"), new CityAssignment(), new Fields("city"))
-                .each(new Fields("event", "city"), new HourAssignment(), new Fields("hour", "cityDiseaseHour"))
+
+                // Derive the hour segment 导出小时段
+                .each(new Fields("event", "city"), new HourAssignment(),
+                        new Fields("hour", "cityDiseaseHour"))
+
+                // Group occurrences in same city and hour 在同一城市按小时发生分组
                 .groupBy(new Fields("cityDiseaseHour"))
-                .persistentAggregate(new OutbreakTrendFactory(), new Count(), new Fields("count")).newValuesStream()
-                .each(new Fields("cityDiseaseHour", "count"), new OutbreakDetector(), new Fields("alert"))
+
+                // Count occurrences and persist the results 计算发现次数并持久保存结果
+                .persistentAggregate(new OutbreakTrendFactory(), new Count(), new Fields("count"))
+                .newValuesStream()
+
+                // Detect an outbreak 检测发病
+                .each(new Fields("cityDiseaseHour", "count"),
+                        new OutbreakDetector(),
+                        new Fields("alert"))
+
+                // Dispatch the alert 发出警报
                 .each(new Fields("alert"), new DispatchAlert(), new Fields());
         return topology.build();
     }
